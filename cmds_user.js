@@ -26,7 +26,7 @@ exports.help = (rl) =>
     >
     > ls              ## list score
 
-    > e              ## exit & return to shell`
+    > e              ## exit & return to shell\n`
   )
 
 // Show all users in DB

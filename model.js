@@ -2,8 +2,6 @@ const { Sequelize, Model, DataTypes } = require("sequelize");
 
 const options = { logging: false };
 
-const { Sequelize, Model, DataTypes } = require('sequelize');
-
 const sequelize = new Sequelize("sqlite:db.sqlite", options);
 
 class User extends Model {}

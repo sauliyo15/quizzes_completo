@@ -1,0 +1,28 @@
+{
+  "name": "proyecto_completo_quizzes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "migrate": "sequelize db:migrate --url sqlite://$(pwd)/db.sqlite",
+    "seed": "sequelize db:seed:all --url sqlite://$(pwd)/db.sqlite",
+    "migrate_win": "sequelize db:migrate --url sqlite://%cd%/db.sqlite",
+    "seed_win": "sequelize db:seed:all --url sqlite://%cd%/db.sqlite",
+    "start": "node main.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauliyo15/quizzes_completo.git"
+  },
+  "author": "sauliyo15",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sauliyo15/quizzes_completo/issues"
+  },
+  "dependencies": {
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.2"
+  },
+  "homepage": "https://github.com/sauliyo15/quizzes_completo#readme"
+}

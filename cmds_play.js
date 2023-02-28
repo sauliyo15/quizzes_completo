@@ -22,11 +22,11 @@ exports.play = async (rl) => {
       quizzes[aleatorio].answer.toLowerCase().trim()
     ) {
       //Respuesta correcta: mensaje por pantalla y sumamos puntuacion
-      rl.log(`  The answer "${respuesta}" is right!`);
+      rl.log(`  The answer "${respuesta}" is right!\n`);
       puntuacion += 1;
     } else {
       //Respuesta incorrecta: mensaje por pantalla
-      rl.log(`  The answer "${respuesta}" is wrong!`);
+      rl.log(`  The answer "${respuesta}" is wrong!\n`);
 
       //Llamada al metodo para mostrar la puntuacion
       mostrarPuntuacion(rl, puntuacion);
@@ -51,7 +51,7 @@ exports.play = async (rl) => {
 
 //Metodo para sacar por pantalla la puntuacion obtenida
 function mostrarPuntuacion(rl, puntos) {
-  rl.log(`  Score: ${puntos}`);
+  rl.log(`  Score: ${puntos}\n`);
 }
 
 //Metodo para guardar la puntuacion en la base de datos
@@ -77,6 +77,9 @@ async function guardarPuntuacion(rl, puntos) {
     //Guardamos la puntuacion en la base de datos con el id del usuario ya existente
     await Score.create({ wins: puntos, userId: users[0].id });
   }
+  rl.log(`  Score registered in Data Base\n`);
+  rl.log(`>`);
+
 }
 
 //Mostrar todos las puntuaciones almacenadas en la base de datos
@@ -91,6 +94,6 @@ exports.listScore = async (rl) => {
     order: [["wins", "DESC"]], //Orden descendente
   });
   scores.forEach((score) =>
-    rl.log(`${score.scored.name}|${score.wins}|${score.createdAt.toUTCString()}`)
+    rl.log(`  ${score.scored.name}|${score.wins}|${score.createdAt.toUTCString()}\n`)
   );
 };
