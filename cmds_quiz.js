@@ -11,7 +11,7 @@ exports.list = async (rl) =>  {
     }
   );
   quizzes.forEach( 
-    q => rl.log(`  "${q.question}" (by ${q.author.name}, id=${q.id})`)
+    q => rl.log(`  "${q.question}" (by ${q.author.name}, id=${q.id})\n`)
   );
 }
 
@@ -20,13 +20,14 @@ exports.create = async (rl) => {
 
   let name = await rl.questionP("Enter user");
     let user = await User.findOne({where: {name}});
-    if (!user) throw new Error(`User ('${name}') doesn't exist!`);
+
+    if (!user) throw new Error(`User ('${name}') doesn't exist!\n`);
 
     let question = await rl.questionP("Enter question");
-    if (!question) throw new Error("Response can't be empty!");
+    if (!question) throw new Error("Response can't be empty!\n");
 
     let answer = await rl.questionP("Enter answer");
-    if (!answer) throw new Error("Response can't be empty!");
+    if (!answer) throw new Error("Response can't be empty!\n");
 
     await Quiz.create( 
       { question,
@@ -34,7 +35,7 @@ exports.create = async (rl) => {
         authorId: user.id
       }
     );
-    rl.log(`   User ${name} creates quiz: ${question} -> ${answer}`);
+    rl.log(`   User ${name} creates quiz: ${question} -> ${answer}\n`);
 }
 
 // Test (play) quiz identified by <id>
@@ -42,14 +43,15 @@ exports.test = async (rl) => {
 
   let id = await rl.questionP("Enter quiz Id");
   let quiz = await Quiz.findByPk(Number(id));
-  if (!quiz) throw new Error(`  Quiz '${id}' is not in DB`);
+
+  if (!quiz) throw new Error(`  Quiz '${id}' is not in DB\n`);
 
   let answered = await rl.questionP(quiz.question);
 
   if (answered.toLowerCase().trim()===quiz.answer.toLowerCase().trim()) {
-    rl.log(`  The answer "${answered}" is right!`);
+    rl.log(`  The answer "${answered}" is right!\n`);
   } else {
-    rl.log(`  The answer "${answered}" is wrong!`);
+    rl.log(`  The answer "${answered}" is wrong!\n`);
   }
 }
 
@@ -60,16 +62,17 @@ exports.update = async (rl) => {
   let quiz = await Quiz.findByPk(Number(id));
 
   let question = await rl.questionP(`Enter question (${quiz.question})`);
-  if (!question) throw new Error("Response can't be empty!");
+
+  if (!question) throw new Error("Response can't be empty!\n");
 
   let answer = await rl.questionP(`Enter answer (${quiz.answer})`);
-  if (!answer) throw new Error("Response can't be empty!");
+  if (!answer) throw new Error("Response can't be empty!\n");
 
   quiz.question = question;
   quiz.answer = answer;
   await quiz.save({fields: ["question", "answer"]});
 
-  rl.log(`  Quiz ${id} updated to: ${question} -> ${answer}`);
+  rl.log(`  Quiz ${id} updated to: ${question} -> ${answer}\n`);
 }
 
 // Delete quiz & favourites (with relation: onDelete: 'cascade')
@@ -78,7 +81,7 @@ exports.delete = async (rl) => {
   let id = await rl.questionP("Enter quiz Id");
   let n = await Quiz.destroy({where: {id}});
   
-  if (n===0) throw new Error(`  ${id} not in DB`);
-  rl.log(`  ${id} deleted from DB`);
-}
 
+  if (n===0) throw new Error(`  ${id} not in DB\n`);
+  rl.log(`  ${id} deleted from DB\n`);
+}
