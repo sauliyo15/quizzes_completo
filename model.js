@@ -1,6 +1,9 @@
 const { Sequelize, Model, DataTypes } = require("sequelize");
 
 const options = { logging: false };
+
+const { Sequelize, Model, DataTypes } = require('sequelize');
+
 const sequelize = new Sequelize("sqlite:db.sqlite", options);
 
 class User extends Model {}
@@ -9,14 +12,13 @@ class Score extends Model {}
 
 //Modelo para la tabla de usuarios: Usuarios
 User.init(
-  {
-    name: {
+  { name: {
       type: DataTypes.STRING,
-      unique: { msg: "Name already exists" },
+      unique: { msg: "Name already exists"},
       allowNull: false,
       validate: {
-        isAlphanumeric: { args: true, msg: "name: invalid characters" },
-      },
+        isAlphanumeric: { args: true, msg: "name: invalid characters"}
+      }
     },
     age: {
       type: DataTypes.INTEGER,
@@ -96,5 +98,6 @@ User.hasMany(Score, {
   as: "scores",
   foreignKey: "userId",
 });
+
 
 module.exports = sequelize;
