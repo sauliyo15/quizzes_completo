@@ -9,7 +9,7 @@
     "migrate_win": "sequelize db:migrate --url sqlite://%cd%/db.sqlite",
     "seed_win": "sequelize db:seed:all --url sqlite://%cd%/db.sqlite",
     "start": "node main.js"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sauliyo15/quizzes_completo.git"
@@ -20,6 +20,9 @@
     "url": "https://github.com/sauliyo15/quizzes_completo/issues"
   },
   "dependencies": {
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.0",
+    "method-override": "^3.0.0",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.2"
